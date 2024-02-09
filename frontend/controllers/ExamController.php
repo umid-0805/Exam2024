@@ -22,6 +22,7 @@ ExamController extends BaseController
 
     public function actionTests(int $id): string
     {
+
         return $this->render('savol',[
             'model' => Savollar::findByTestId($id),
             'test_id' => $id

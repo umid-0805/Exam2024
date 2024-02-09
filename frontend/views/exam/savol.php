@@ -22,11 +22,13 @@ use yii\bootstrap5\ActiveForm;
       <h4><?=$number .". ". $item->question ?></h4>
        <br>
       <div class="form-check">
-        <br>
-          <label for="<?= 'savold' . $item->id ?>"></label><input class="form-check-input" type="radio" name="<?= 'savol' . $item->id ?>" id="<?= 'savold' . $item->id ?>" value=4>
-        <label class="form-check-label" for="<?= 'savol' . $item->id ?>">
-           <?= $item->option ?>
-        </label>
+        <br><?php $option = \common\models\Option::find()->andWhere(['savollar_id' => $item->id])->isDeleted()->all()  ?>
+            <?php foreach ($option as $value): ?>
+             <?= '( ' . $value->name . ' ) ' .   $value->option . '<br>' ?>
+            <?php endforeach; ?>
+
+<!--          <label for="--><?php //= 'savold' . $item->id ?><!--"></label><input class="form-check-input" type="radio" name="--><?php //= 'savol' . $item->id ?><!--" id="--><?php //= 'savold' . $item->id ?><!--" value=4>-->
+<!--          <label class="form-check-label" for="--><?php //= 'savol' . $item->id ?><!--"></label>-->
       </div>
 
       <hr>

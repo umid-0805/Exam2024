@@ -82,8 +82,10 @@ class Savollar extends \yii\db\ActiveRecord
 
     public static function findByTestId(int $id): array
     {
-        return self::find()->where(['fan_id' => $id])->all();
+        return self::find()->where(['test_id' => $id])->all();
     }
+
+
     public function statusActive(): void
     {
         switch ($this->status){
