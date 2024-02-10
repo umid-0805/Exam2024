@@ -8,6 +8,7 @@ use common\models\search\TestlarSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * TestlarController implements the CRUD actions for Testlar model.
@@ -66,7 +67,7 @@ class TestlarController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate(): string
+    public function actionCreate(): string|Response
     {
         $model = new Testlar();
 

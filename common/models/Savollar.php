@@ -79,7 +79,11 @@ class Savollar extends \yii\db\ActiveRecord
         return $this->hasOne(Fanlar::class, ['id' => 'fan_id']);
     }
 
+   public function getOption(): ActiveQuery
+   {
+       return $this->hasMany(Option::class, ['savollar_id' => 'id']);
 
+   }
     public static function findByTestId(int $id): array
     {
         return self::find()->where(['test_id' => $id])->all();

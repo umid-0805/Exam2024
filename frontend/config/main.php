@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/../../common/helpers/glabalFunctions/GlabalFunction.php';
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',

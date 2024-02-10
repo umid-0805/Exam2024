@@ -1,41 +1,23 @@
-
-<pre>
-
 <?php
-
+/** @var common\models\Savollar $model */
 use yii\bootstrap5\ActiveForm;
-
-
-  $number = 1;
 ?>
-</pre>
 
 <div class="question container-fluid">
-  <?php $form = ActiveForm::begin([
-    'id' => 'login-form',
-    'method' =>  'post',
-    'action' => ['view', 'test_id' => $test_id],
+  <?php $form = ActiveForm::begin(['id' => 'login-form', 'method' =>  'post', 'action' => ['create']]) ?>
 
-    'options' => ['class' => 'form-horizontal'],
-  ]) ?>
-    <?php foreach($model as $item): ?>
-      <h4><?=$number .". ". $item->question ?></h4>
-       <br>
-      <div class="form-check">
-        <br><?php $option = \common\models\Option::find()->andWhere(['savollar_id' => $item->id])->isDeleted()->all()  ?>
-            <?php foreach ($option as $value): ?>
-             <?= '( ' . $value->name . ' ) ' .   $value->option . '<br>' ?>
-            <?php endforeach; ?>
+    <?php $i = 1; foreach($model as $item): ?>
 
-<!--          <label for="--><?php //= 'savold' . $item->id ?><!--"></label><input class="form-check-input" type="radio" name="--><?php //= 'savol' . $item->id ?><!--" id="--><?php //= 'savold' . $item->id ?><!--" value=4>-->
-<!--          <label class="form-check-label" for="--><?php //= 'savol' . $item->id ?><!--"></label>-->
-      </div>
+        <h4><?="$i . $item->question"?></h4>
 
-      <hr>
-    <?php $number++; endforeach; ?>
+          <?= $this->render('option', ['option' => $item->option]) ?>
+
+       <?php $i++; endforeach; ?>
 
     <input type="submit" class="btn btn-primary" value="Testni yakunlash">
+
   <?php ActiveForm::end() ?>
+
 </div>
 
 <style>

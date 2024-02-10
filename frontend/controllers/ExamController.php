@@ -2,6 +2,8 @@
 
 namespace frontend\controllers;
 
+use common\models\ExamUser;
+use common\models\Option;
 use common\models\Savollar;
 use Yii;
 use common\models\Testlar;
@@ -12,7 +14,7 @@ ExamController extends BaseController
 {
 
     public function actionTest(): string
-    {   
+    {
         $res = Testlar::find()->all();
 
         return $this->render('test', [
@@ -23,7 +25,7 @@ ExamController extends BaseController
     public function actionTests(int $id): string
     {
 
-        return $this->render('savol',[
+        return $this->render('savol', [
             'model' => Savollar::findByTestId($id),
             'test_id' => $id
         ]);
@@ -37,34 +39,47 @@ ExamController extends BaseController
         $res = Savollar::find()->where(['option' => $name])->all();
     }
 
-    public function actionView($test_id): string
+    public function actionCreate()
     {
-        $post = Yii::$app->request->post();
-      
-        $savollar = Savollar::findAll(['test_id' => $test_id]);
-        $answer_count = 0;
 
-        foreach ($savollar as $value) {
-            if (isset($post['savol' . $value->id]) && $value->success_answer == $post['savol' . $value->id]) {
-                $answer_count++;
+        if ($this->request->isPost) {
+            $ddd = Yii::$app->request->post();
+
+            foreach ($ddd as $key => $value) {
+                if ($key !== '_csrf-frontend'){
+                    $savol = Option::findOne((int)$value);
+                    $model = new ExamUser();
+                    $model->savollar_id = $savol->savollar_id;
+                    $model->option_id = (int)$value;
+                    $model->status = 1;
+                    $model->save(false);
+                    setFlash('success','saqlandi');
+                }
+
             }
+
+            return  $this->redirect(['tests', 'id' => 6]);
+        }
+    }
+
+    public function actionView(): string
+    {
+        $natija = new ExamUser();
+
+        if ($natija->load(Yii::$app->request->post())) {
+
+            $natija->savollar_id = 5;
+            $natija->option_id = 1;
+            $natija->success_answer = 2;
+
+            $natija->save();
+
         }
 
-        $natija = new TestUser();
-        $natija->user_id = Yii::$app->user->id;
-        $natija->testlar_id = $test_id;
-        $natija->success_count  = $answer_count;
-        $natija->end_date = date('Y-m-d H:i:s');
-       
-        $natija->save(false);
-        
 
-        return $this->render('view',[
-            'answer_count' => $answer_count,
-            'natija'=>$natija,
-      
-            
-            
+        return $this->render('view', [
+            'answer_count' => 1,
+            'natija' => $natija,
         ]);
-     }
+    }
 }
