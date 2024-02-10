@@ -14,7 +14,7 @@ use yii\helpers\Url;
 $m = Option::find()->andWhere(['savollar_id' => $savol_id])->one();
 
 
-$this->title = '( ' . $m->savollar->fan->name . ' )  ' . $m->savollar->question;
+$this->title = '( ' . $m->savollar->fan->name . ' )  ' . $m ->savollar->question;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="option-index">

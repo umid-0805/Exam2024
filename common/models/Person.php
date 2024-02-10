@@ -73,4 +73,10 @@ class Person extends ActiveRecord
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
+
+    public function getPerson(): ActiveQuery
+    {
+        return $this->hasOne(Person::class, ['id' => 'user_id']);
+    }
+
 }

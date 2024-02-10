@@ -17,7 +17,7 @@ ExamController extends BaseController
 
     public function actionTest(): string
     {
-        $res = Testlar::find()->all();
+        $res = Testlar::find()->andWhere(['is_deleted' => 0])->all();
 
         return $this->render('test', [
             'model' => $res
@@ -57,22 +57,11 @@ ExamController extends BaseController
 
     public function actionView(): string
     {
-        $natija = new ExamUser();
 
-        if ($natija->load(Yii::$app->request->post())) {
-
-            $natija->savollar_id = 5;
-            $natija->option_id = 1;
-            $natija->success_answer = 2;
-
-            $natija->save();
-
-        }
-
+        $model = ExamUser::find()->andWhere(['status' => 1])->andWhere(['created_by' => Yii::$app->user->identity->getId()])->all();
 
         return $this->render('view', [
-            'answer_count' => 1,
-            'natija' => $natija,
+            'model' => $model,
         ]);
     }
 }

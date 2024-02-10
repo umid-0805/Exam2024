@@ -20,9 +20,7 @@ class m240210_052834_add_exam_user_column_success_answer extends Migration
      */
     public function safeDown()
     {
-        echo "m240210_052834_add_exam_user_column_success_answer cannot be reverted.\n";
-
-        return false;
+        $this->dropColumn('exam_user', 'success_answer');
     }
 
     /*
