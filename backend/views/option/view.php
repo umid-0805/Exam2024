@@ -40,12 +40,3 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
-<?php
-//$script = <<< JS
-//
-//    alert("Hi vvvvvvvvvvvvvvvvvvvvvv");
-//
-//JS;
-//$this->registerJs($script);
-//?>

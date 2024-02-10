@@ -5,9 +5,11 @@ namespace frontend\controllers;
 use common\models\ExamUser;
 use common\models\Option;
 use common\models\Savollar;
+use common\serves\ExamUserServes;
 use Yii;
 use common\models\Testlar;
 use common\models\TestUser;
+use yii\web\Response;
 
 class
 ExamController extends BaseController
@@ -39,27 +41,18 @@ ExamController extends BaseController
         $res = Savollar::find()->where(['option' => $name])->all();
     }
 
-    public function actionCreate()
+    public function actionCreate(): Response|string
     {
+        $model = new ExamUserServes;
 
         if ($this->request->isPost) {
-            $ddd = Yii::$app->request->post();
+            $post = Yii::$app->request->post();
+            $model->saveDate($post);
 
-            foreach ($ddd as $key => $value) {
-                if ($key !== '_csrf-frontend'){
-                    $savol = Option::findOne((int)$value);
-                    $model = new ExamUser();
-                    $model->savollar_id = $savol->savollar_id;
-                    $model->option_id = (int)$value;
-                    $model->status = 1;
-                    $model->save(false);
-                    setFlash('success','saqlandi');
-                }
-
-            }
-
-            return  $this->redirect(['tests', 'id' => 6]);
+            return  $this->redirect(['view']);
         }
+
+        return 'error';
     }
 
     public function actionView(): string
