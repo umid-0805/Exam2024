@@ -2,8 +2,6 @@
 
 /**@var common\models\ExamUser $model */
 
-$person = Yii::$app->user->identity->person;
-
 ?>
 
 <table>
@@ -16,7 +14,7 @@ $person = Yii::$app->user->identity->person;
 
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
-                        <h2> <?= $person->lastName . '    '  . $person->firstName ?></h2>
+                        <h2> <?= getUserByIntityPerson()->lastName . '    '  . getUserByIntityPerson()->firstName ?></h2>
                     </blockquote>
                 </div>
                 <tr>

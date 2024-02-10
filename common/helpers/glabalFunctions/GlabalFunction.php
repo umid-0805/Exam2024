@@ -14,3 +14,13 @@ function stringToInt(string $string): int
 {
    return preg_replace("/[^0-9]/", "", $string);
 }
+
+function getUserByIntityPerson()
+{
+   return Yii::$app->user->identity->person;
+}
+
+function getUserIntity()
+{
+    return Yii::$app->user->identity;
+}
