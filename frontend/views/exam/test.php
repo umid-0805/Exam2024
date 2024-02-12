@@ -1,5 +1,5 @@
 <?php
-
+/** @var $model */
 ?>
     <div class="row">
 

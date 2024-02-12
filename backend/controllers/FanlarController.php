@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\Fanlar;
 use common\models\search\FanlarSearch;
+use yii\base\Response;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,7 +39,7 @@ class FanlarController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new FanlarSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -55,7 +56,7 @@ class FanlarController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView(int $id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -67,7 +68,7 @@ class FanlarController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreate(): Response|string
     {
         $model = new Fanlar();
 
@@ -91,7 +92,7 @@ class FanlarController extends Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate(int $id): Response|string
     {
         $model = $this->findModel($id);
 
@@ -111,9 +112,9 @@ class FanlarController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete(int $id): Response
     {
-        
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -126,7 +127,7 @@ class FanlarController extends Controller
      * @return Fanlar the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel(int $id): Fanlar
     {
         if (($model = Fanlar::findOne(['id' => $id])) !== null) {
             return $model;

@@ -14,7 +14,7 @@ use yii\helpers\Url;
 $m = Option::find()->andWhere(['savollar_id' => $savol_id])->one();
 
 
-$this->title = '( ' . $m->savollar->fan->name . ' )  ' . $m ->savollar->question;
+$this->title = '( ' . $m->savollar->fan->name . ' )  ' . $m->savollar->question;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="option-index">
@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p style="display: flex; justify-content: space-between;">
-        <?=  Html::a('Create Option', ['create', 'test_id' => $m->savollar->id],  ['class' => 'btn btn-outline-primary'])  ?>
-        <?= count($model) > 2 ? Html::a('Tasdiqlash',['tasdiqlash' ], ['class' => 'btn btn-outline-primary', 'id' => 'tasdiqlashBtn', 'data' => ['confirm' => 'Tasdiqlashdan so\'ng foydalanishga ruxsat beriladi ']]) : '' ?>
+        <?= count($model) < 5 ? Html::a('Create Option', ['create', 'test_id' => $m->savollar->id], ['class' => 'btn btn-outline-primary']) : '' ?>
+        <?= count($model) > 2 && array_filter(array_column($model, 'status'), function ($status) {
+            return $status != 1;
+        }) ? Html::a('Tasdiqlash', ['tasdiqlash'], ['class' => 'btn btn-outline-primary', 'id' => 'tasdiqlashBtn', 'data' => ['confirm' => 'Tasdiqlashdan so\'ng foydalanishga ruxsat beriladi ']]) : '' ?>
 
     </p>
-
-
 
 
     <form action="" method="get" style="width: 100%; display: flex;">
@@ -53,22 +53,27 @@ $this->params['breadcrumbs'][] = $this->title;
         </tr>
         </thead>
         <tbody>
-       <?php $i = 1; foreach ($model as $value): ?>
-        <tr>
-            <th scope="row"><?= $i++ ?></th>
-            <td><?= $value->id?></td>
-            <td><?= $value->name?></td>
-            <td><?= $value->option?></td>
-            <td>
-                <a href="<?= Url::to(['status', 'id' => $value->id, 'status' => $value->status == 1 ? 1 : 10]) ?>"><?= $value->status == 1 ? '🔴' : '🟢' ?></a>
+        <?php $i = 1;
+        foreach ($model as $value): ?>
+            <tr>
+                <th scope="row"><?= $i++ ?></th>
+                <td><?= $value->id ?></td>
+                <td><?= $value->name ?></td>
+                <td><?= $value->option ?></td>
+                <td>
+                    <a href="<?= Url::to(['status', 'id' => $value->id, 'status' => $value->status == 1 ? 1 : 10]) ?>"><?= $value->status == 1 ? '🔴' : '🟢' ?></a>
 
-            </td>
-            <td> <a href="<?= Url::to(['view', 'id' => $value->id]) ?>"   title="Ko`rish" data-pjax="0">
-                    <img width="14" height="14" src="https://img.icons8.com/ios-filled/50/circular-arrows--v1.png" alt="circular-arrows--v1"/>
-                    <svg aria-hidden="true" style="display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em;width:1.125em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">…</svg>
-            </td>
+                </td>
+                <td><a href="<?= Url::to(['view', 'id' => $value->id]) ?>" title="Ko`rish" data-pjax="0">
+                        <img width="14" height="14" src="https://img.icons8.com/ios-filled/50/circular-arrows--v1.png"
+                             alt="circular-arrows--v1"/>
+                        <svg aria-hidden="true"
+                             style="display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em;width:1.125em"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">…
+                        </svg>
+                </td>
 
-        </tr>
+            </tr>
         <?php endforeach; ?>
         </tbody>
 

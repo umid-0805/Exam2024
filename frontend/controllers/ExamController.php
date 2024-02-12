@@ -3,12 +3,10 @@
 namespace frontend\controllers;
 
 use common\models\ExamUser;
-use common\models\Option;
 use common\models\Savollar;
 use common\serves\ExamUserServes;
 use Yii;
 use common\models\Testlar;
-use common\models\TestUser;
 use yii\web\Response;
 
 class
