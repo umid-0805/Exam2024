@@ -46,10 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-            <th scope="col">satus</th>
-            <th scope="col">amallar</th>
+            <th scope="col">Options</th>
+            <th scope="col">Answers</th>
+            <th scope="col">Satus</th>
+            <th scope="col">Amallar</th>
         </tr>
         </thead>
         <tbody>
