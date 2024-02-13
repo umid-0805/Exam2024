@@ -22,8 +22,18 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'question_count')->textInput()
-     ?>
+    <div class="d-flex">
+        <div class="m-2">
+            <?= $form->field($model, 'date')->Input('date') ?>
+        </div>
+
+        <div class="m-2">
+        <?= $form->field($model, 'start_time')->Input('time') ?>
+        </div>
+            <div class="m-2">
+        <?= $form->field($model, 'end_time')->Input('time')?>
+            </div>
+    </div>
 
   <br>
 

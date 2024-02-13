@@ -1,7 +1,5 @@
 <?php
-
-
-
+/** @var $model */
 
 ?>
 <div class="col-lg-3">
@@ -12,7 +10,7 @@
     <?php foreach($model as $value): ?>
     <h5 class="card-title">Fan nomi: <?= $value->fan_nomi?></h5>
       <p class="card-text">
-      <h5 class="card-title">Test soni: <?= $value->question_count ?></h5>
+<!--      <h5 class="card-title">Test soni: --><?php //= $value->question_count ?><!--</h5>-->
         <a href="<?= \yii\helpers\Url::to(['tests?id='.$value->id])?>" class="button">Testga kirish</a>
     <?php endforeach; ?>
     </div>

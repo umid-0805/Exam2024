@@ -55,7 +55,6 @@ ExamController extends BaseController
 
     public function actionView(): string
     {
-
         $model = ExamUser::find()->andWhere(['status' => 1])->andWhere(['created_by' => Yii::$app->user->identity->getId()])->all();
 
         return $this->render('view', [

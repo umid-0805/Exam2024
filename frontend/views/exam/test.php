@@ -11,7 +11,7 @@
 <!--                    <h4 class="card-header"> Fan nomi: --><?php //= $value->name?><!--</h4>-->
                     <h5 class="card-header">Test nomi: <?= $value->name ?></h5>
                     <div class="card-body">
-                        <p>Savollar soni:  <?= $value->question_count ?></p>
+                  <p>Savollar soni:  <?php //= $value->$this->savollar_id ?></p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="<?= Url::toRoute(['tests?id='.$value->id])?>" class="btn btn-primary">Boshlash</a>

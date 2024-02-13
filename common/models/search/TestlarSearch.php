@@ -12,12 +12,17 @@ use common\models\Testlar;
 class TestlarSearch extends Testlar
 {
     /**
+     * @var mixed|null
+     */
+
+
+    /**
      * {@inheritdoc}
      */
     public function rules(): array
     {
         return [
-            [['id', 'fanlar_id', 'question_count'], 'integer'],
+            [['id', 'fanlar_id', 'date','start_time','end_time'], 'integer'],
             [['name', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -61,7 +66,9 @@ class TestlarSearch extends Testlar
         $query->andFilterWhere([
             'id' => $this->id,
             'fanlar_id' => $this->fanlar_id,
-            'question_count' => $this->question_count,
+            'date' => $this->date,
+            'start_time' => $this->start_time,
+            'end_time' => $this->end_time,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\helpers\ExeptionConstations\Constations;
 use common\models\Option;
+use common\models\Savollar;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -125,7 +126,13 @@ class OptionController extends Controller
             'model' => $model,
         ]);
     }
+    public function actionConfirmation($id)
+    {
+       $savol = Savollar::findOne($id);
+       $savol->statusActive();
 
+       return $this->redirect(['index', 'savol_id'=> $savol->id]);
+    }
     /**
      * Deletes an existing Option model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

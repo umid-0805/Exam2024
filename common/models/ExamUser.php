@@ -95,4 +95,14 @@ class ExamUser extends ActiveRecord
     {
         return $this->hasOne(Savollar::class, ['id' => 'savollar_id']);
     }
+
+    public function getExamStatusActive()
+    {
+       return  Option::find()->andWhere(['status' => 10])->andWhere(['is_deleted' => 0])->count();
+    }
+
+    public function getExamStatusNeActive()
+    {
+        return  Option::find()->andWhere(['status' => 1])->andWhere(['is_deleted' => 0])->count();
+    }
 }

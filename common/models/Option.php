@@ -147,6 +147,11 @@ class Option extends ActiveRecord
     }
 
 
+    public function getExamStatusActive()
+    {
+        return  self::find()->andWhere(['status' => 10])->andWhere(['is_deleted' => 0])->count();
+    }
+
 
     public static function find(): OptionQuery
     {

@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\helpers\ExeptionConstations\Constations;
 use Yii;
 use \yii\db\ActiveQuery;
 /**
@@ -13,6 +14,7 @@ use \yii\db\ActiveQuery;
  * @property string|null $created_at
  * @property string|null $updated_at
  * @property int|null $test_id
+ * @property int|null $status
  * @property int|null $fan_id
  * @property int|null $test_name
  * @property Testlar $test
@@ -38,7 +40,7 @@ class Savollar extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['success_answer', 'fan_id', 'test_id'], 'integer',],
+            [['success_answer', 'status', 'fan_id', 'test_id'], 'integer',],
             [['created_at', 'updated_at'], 'safe'],
             [['question', 'success_answer', 'test_id'], 'required'],
             [['question'], 'string', 'max' => 255],
@@ -86,7 +88,7 @@ class Savollar extends \yii\db\ActiveRecord
    }
     public static function findByTestId(int $id): array
     {
-        return self::find()->where(['test_id' => $id])->all();
+        return self::find()->where(['test_id' => $id])->andWhere(['status' => 10])->all();
     }
 
 
@@ -94,7 +96,7 @@ class Savollar extends \yii\db\ActiveRecord
     {
         switch ($this->status){
             case 10:
-                $this->status(01);
+                $this->status(1);
                 break;
             default:
                 $this->status(10);
@@ -103,7 +105,10 @@ class Savollar extends \yii\db\ActiveRecord
 
     }
 
-    private function status(int $int)
+    private function status(int $status): void
     {
+        $this->status = $status;
+        $this->save(false);
+        setFlash(Constations::KEY_SUCCESS,Constations::SUCCESS_MESSAGE);
     }
 }
