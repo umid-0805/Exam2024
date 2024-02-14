@@ -83,7 +83,7 @@ class Savollar extends \yii\db\ActiveRecord
 
    public function getOption(): ActiveQuery
    {
-       return $this->hasMany(Option::class, ['savollar_id' => 'id']);
+       return $this->hasMany(Option::class, ['savollar_id' => 'id'])->andWhere(['is_deleted' => 0]);
 
    }
     public static function findByTestId(int $id): array

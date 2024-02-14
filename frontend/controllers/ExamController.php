@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\ExamUser;
+use common\models\Option;
 use common\models\Savollar;
 use common\serves\ExamUserServes;
 use Yii;
@@ -22,17 +23,28 @@ ExamController extends BaseController
         ]);
     }
 
-    public function actionTests(int $id)
+    public function actionTests(int $id): Response|string
     {
-       // user testni yechgan bulsa test ga qaytar
-        if(11 == 555){
-            return $this->redirect(['test']);
+
+        $query = ExamUser::find()
+            ->leftJoin('savollar', 'exam_user.savollar_id = savollar.id')
+            ->andWhere(['savollar.test_id' => $id])
+            ->andWhere(['exam_user.created_by' => getUserId()])
+           // ->andWhere(['is_deleted' => 0])
+            ->all();
+
+        if ($query){
+            return  $this->redirect(['test']);
+
         }
 
         return $this->render('savol', [
             'model' => Savollar::findByTestId($id),
             'test_id' => $id
+
         ]);
+
+
     }
 
 

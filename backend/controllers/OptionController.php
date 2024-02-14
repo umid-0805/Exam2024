@@ -13,25 +13,10 @@ use yii\web\Response;
 /**
  * OptionController implements the CRUD actions for Option model.
  */
-class OptionController extends Controller
+class OptionController extends BaseController
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
+
+
 
     /**
      * Lists all Option models.

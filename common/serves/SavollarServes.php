@@ -5,6 +5,7 @@ namespace common\serves;
 
 use backend\models\forms\SavollarCreateForm;
 use common\helpers\SavollarFactory;
+use common\models\Testlar;
 
 class SavollarServes
 {
@@ -16,7 +17,7 @@ class SavollarServes
     {
         return (new SavollarFactory)->create(
             $this->savollarCreateForm->getQuestion(),
-            4,
+            Testlar::findOne($id)->fanlar_id,
             5,
             $id
         )->save();

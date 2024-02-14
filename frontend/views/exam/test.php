@@ -15,8 +15,8 @@ use yii\helpers\Url;
                 <div class="card-body">
                     <p>Savollar soni: </p>
 
-                kun <?= date('Y-m-d') ?>
-                soat <?= date('H:i:s') ?>
+<!--                kun --><?php //= date('Y-m-d') ?>
+<!--                soat --><?php //= date('H:i:s') ?>
                 </div>
                 <div class="card-footer text-center">
                     <?php if (getUserIntity()): ?>

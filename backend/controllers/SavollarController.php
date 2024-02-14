@@ -16,25 +16,8 @@ use yii\filters\VerbFilter;
 /**
  * SavollarController implements the CRUD actions for Savollar model.
  */
-class SavollarController extends Controller
+class SavollarController extends BaseController
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
 
     /**
      * Lists all Savollar models.
