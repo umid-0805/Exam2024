@@ -13,31 +13,9 @@ use yii\web\Response;
 /**
  * TestlarController implements the CRUD actions for Testlar model.
  */
-class TestlarController extends Controller
+class TestlarController extends BaseController
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
 
-    /**
-     * Lists all Testlar models.
-     *
-     * @return string
-     */
     public function actionIndex(): string
     {
         $searchModel = new TestlarSearch();

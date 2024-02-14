@@ -15,15 +15,19 @@ ExamController extends BaseController
 
     public function actionTest(): string
     {
-        $res = Testlar::find()->andWhere(['is_deleted' => 0])->all();
+        $res = Testlar::find()->andWhere(['is_deleted' => 0])->andWhere(['date' => date('Y-m-d')])->all();
 
         return $this->render('test', [
             'model' => $res
         ]);
     }
 
-    public function actionTests(int $id): string
+    public function actionTests(int $id)
     {
+       // user testni yechgan bulsa test ga qaytar
+        if(11 == 555){
+            return $this->redirect(['test']);
+        }
 
         return $this->render('savol', [
             'model' => Savollar::findByTestId($id),

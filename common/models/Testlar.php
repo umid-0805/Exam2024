@@ -3,6 +3,7 @@
 namespace common\models;
 
 use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "testlar".
@@ -19,7 +20,7 @@ use yii\db\ActiveQuery;
  * @property Fanlar $fanlar
  * @property Savollar[] $savollars
  */
-class Testlar extends \yii\db\ActiveRecord
+class Testlar extends ActiveRecord
 {
     /**
      * {@inheritdoc}

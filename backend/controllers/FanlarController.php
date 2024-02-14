@@ -14,25 +14,8 @@ use yii\filters\VerbFilter;
  * FanlarController implements the CRUD actions for Fanlar model.
  */
 
-class FanlarController extends Controller
+class FanlarController extends BaseController
 {
-    /**
-     * @inheritDoc
-     */
-    public function behaviors()
-    {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
-                ],
-            ]
-        );
-    }
 
     /**
      * Lists all Fanlar models.

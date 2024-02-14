@@ -126,7 +126,7 @@ class OptionController extends Controller
             'model' => $model,
         ]);
     }
-    public function actionConfirmation($id)
+    public function actionConfirmation($id): Response
     {
        $savol = Savollar::findOne($id);
        $savol->statusActive();

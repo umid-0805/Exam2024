@@ -57,7 +57,13 @@ class SignupForm extends Model
             $user = $this->getUserFactory()->userCreateAndSave($this->username, $this->password, $this->email);
             if (!$user->save()){throw new Exception('user err'); }
 
-            $person = $this->getPersonFactory()->personCreateAndSave($user->id, $this->lastName, $this->firstName, $this->phone);
+            $person = $this->getPersonFactory()->personCreateAndSave(
+                $user->id,
+                $this->lastName,
+                $this->firstName,
+                $this->phone
+            );
+
             if (!$person->save()){throw new Exception('There was an error with your personal information    '); }
 
             Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
