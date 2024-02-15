@@ -69,12 +69,18 @@ ExamController extends BaseController
         return 'error';
     }
 
-    public function actionView(): string
+    public function actionView($id): string
     {
-        $model = ExamUser::find()->andWhere(['status' => 1])->andWhere(['created_by' => Yii::$app->user->identity->getId()])->all();
+        $model = ExamUser::find()
+            ->leftJoin('savollar', 'exam_user.savollar_id = savollar.id')
+            ->andWhere(['savollar.test_id' => $id])
+            ->andWhere(['savollar.status' => 10])
+            ->andWhere(['exam_user.created_by' => getUserId()])
+            ->all();
 
         return $this->render('view', [
             'model' => $model,
+
         ]);
     }
 }

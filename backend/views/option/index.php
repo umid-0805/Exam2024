@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= count($model) < 5 ? Html::a('Create Option', ['create', 'test_id' => $m->savollar->id], ['class' => 'btn btn-outline-primary']) : '' ?>
         <?= count($model) > 2 && array_filter(array_column($model, 'status'), function ($status) {
             return $status != 1;
-        }) ? Html::a('Tasdiqlash', ['confirmation', 'id' => $savol_id], ['class' => 'btn btn-outline-primary', 'id' => 'tasdiqlashBtn', 'data' => ['confirm' => 'Tasdiqlashdan so\'ng foydalanishga ruxsat beriladi ']]) : '' ?>
+        }) ? Html::a('Tasdiqlash', ['confirmation', 'id' => $savol_id], ['class' => 'btn btn-outline-primary', 'id' => 'tasdiqlashBtn', 'disabled' => true, 'data' => ['confirm' => 'Tasdiqlashdan so\'ng foydalanishga ruxsat beriladi ']]) : '' ?>
 
     </p>
 
