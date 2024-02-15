@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\models\User;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -20,8 +21,6 @@ use frontend\models\ContactForm;
  */
 class SiteController extends BaseController
 {
-
-
     /**
      * Displays homepage.
      *
@@ -41,14 +40,15 @@ class SiteController extends BaseController
      *
      * @return string|\yii\web\Response
      */
-    public function actionLogin(): string|Response
+    public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
+        if ($model->load(Yii::$app->request->post()) &&   $model->login()) {
             return $this->goBack();
         }
 

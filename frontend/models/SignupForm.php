@@ -51,6 +51,10 @@ class SignupForm extends Model
      */
     public function signup(): bool
     {
+        if (!$this->validate()){
+            return false;
+        }
+
         $tr = Yii::$app->db->beginTransaction();
 
         try {

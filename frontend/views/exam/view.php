@@ -33,8 +33,6 @@ foreach ($model as $value) {
                     </div>
                 </div>
             </div>
-
-
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Savollar</th>

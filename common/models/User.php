@@ -89,7 +89,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $username
      * @return static|null
      */
-    public static function findByUsername(string $username): static
+    public static function findByUsername(string $username): static|null
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
@@ -100,7 +100,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token password reset token
      * @return static|null
      */
-    public static function findByPasswordResetToken(string $token)
+    public static function findByPasswordResetToken(string $token): static|null
     {
         if (!static::isPasswordResetTokenValid($token)) {
             return null;
@@ -118,7 +118,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken(string $token): static
+    public static function findByVerificationToken(string $token): static|null
     {
         return static::findOne([
             'verification_token' => $token,
@@ -219,13 +219,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-    public function isUser()
-    {
-        if ($this->Role === self::ROLE_USER || $this->Role === self::ROLE_ADMIN) {
-            return true;
-        }
-        return false;
-    }
+
     public function isAdmin()
     {
         if ($this->Role === self::ROLE_ADMIN) {
@@ -238,15 +232,4 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Person::class, ['user_id' => 'id']);
     }
-//    public function generateUsername($lastName, $firstName)
-//    {
-//        // ism va familya qismlarini ajratish
-//        $lastNamePart = strtolower(substr($lastName, 0, 4)); // ismni 4 ta harf
-//        $firstNamePart = strtolower(substr($firstName, 0, 4)); // familyani 4 ta harf
-//
-//        // username generatsiya qilish
-//        $username = $lastNamePart . '_' . $firstNamePart . '_' . rand(100, 999); // belgilar va tasodifiy raqam
-//
-//        return $username;
-//    }
 }

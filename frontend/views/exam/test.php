@@ -1,5 +1,6 @@
 <?php
 /** @var common\models\Testlar $model */
+
 use yii\helpers\Url;
 
 ?>
@@ -14,8 +15,10 @@ use yii\helpers\Url;
                 </div>
                 <div class="card-footer text-center">
                     <?php if (getUserIntity()): ?>
-                        <a href="<?= Url::toRoute(['exam/view', 'id' => $value->id]) ?>" class="btn btn-success" id="natijaButton">Natija</a>
-                        <a href="<?= Url::toRoute(['tests?id=' . $value->id]) ?>" class="btn btn-primary" id="boshlashButton">Boshlash</a>
+                        <a href="<?= Url::toRoute(['exam/view', 'id' => $value->id]) ?>
+                             " class="btn btn-success" id="natijaButton">Natija</a>
+                        <a href="<?= Url::toRoute(['tests?id=' . $value->id]) ?>" class="btn btn-primary"
+                           id="boshlashButton">Boshlash</a>
                     <?php else: ?>
                     <?php endif; ?>
 
