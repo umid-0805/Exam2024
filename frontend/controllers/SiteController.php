@@ -40,7 +40,7 @@ class SiteController extends BaseController
      *
      * @return string|\yii\web\Response
      */
-    public function actionLogin()
+    public function actionLogin(): \yii\web\Response|string
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();

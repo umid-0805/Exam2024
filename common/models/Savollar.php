@@ -5,6 +5,8 @@ namespace common\models;
 use common\helpers\ExeptionConstations\Constations;
 use Yii;
 use \yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "savollar".
  *
@@ -19,7 +21,7 @@ use \yii\db\ActiveQuery;
  * @property int|null $test_name
  * @property Testlar $test
  */
-class Savollar extends \yii\db\ActiveRecord
+class Savollar extends ActiveRecord
 {
 
 //    public function beforeSave($insert)
@@ -29,7 +31,7 @@ class Savollar extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'savollar';
     }
@@ -37,14 +39,15 @@ class Savollar extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['success_answer', 'status', 'fan_id', 'test_id'], 'integer',],
             [['created_at', 'updated_at'], 'safe'],
             [['question', 'success_answer', 'test_id'], 'required'],
             [['question'], 'string', 'max' => 255],
-            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Testlar::class, 'targetAttribute' => ['test_id' => 'id']],
+            [['test_id'], 'exist', 'skipOnError' => true, 'targetClass' => Testlar::class,
+                'targetAttribute' => ['test_id' => 'id']],
 
             
         ];
@@ -69,7 +72,7 @@ class Savollar extends \yii\db\ActiveRecord
     /**
      * Gets query for [[Test]].
      *
-     * @return \yii\db\ActiveQuery
+     * @return yii\db\ActiveQuery
      */
     public function getTest(): ActiveQuery
     {
