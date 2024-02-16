@@ -43,7 +43,8 @@ foreach ($model as $value) {
                 <tr>
                     <td><?= $i++ ?></td>
                     <td><?= $value->savollar->question ?></td>
-                    <td style="background-color: <?= $value->option->status == 1 ? 'red' : '#0a3622' ?> ; color: #fff"><?= $value->option->name ?></td>
+                    <td style="background-color: <?= $value->option->status == 1 ? 'red' : '#0a3622' ?> ; color: #fff">
+                        <?= $value->option->name ?></td>
                 </tr>
 
             <?php endforeach; ?>

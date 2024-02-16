@@ -30,7 +30,6 @@ ExamController extends BaseController
             ->leftJoin('savollar', 'exam_user.savollar_id = savollar.id')
             ->andWhere(['savollar.test_id' => $id])
             ->andWhere(['exam_user.created_by' => getUserId()])
-           // ->andWhere(['is_deleted' => 0])
             ->all();
 
         if ($query){
@@ -63,13 +62,13 @@ ExamController extends BaseController
             $post = Yii::$app->request->post();
             $model->saveDate($post);
 
-            return  $this->redirect(['view']);
+            return  $this->redirect(['view',  'id'=> 11]) ;
         }
 
         return 'error';
     }
 
-    public function actionView($id): string
+    public function actionView($id): ?string
     {
         $model = ExamUser::find()
             ->leftJoin('savollar', 'exam_user.savollar_id = savollar.id')
@@ -78,7 +77,8 @@ ExamController extends BaseController
             ->andWhere(['exam_user.created_by' => getUserId()])
             ->all();
 
-        return $this->render('view', [
+
+        return $this->render(   'view', [
             'model' => $model,
 
         ]);

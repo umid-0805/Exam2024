@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -77,6 +78,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
+     * @throws NotSupportedException
      */
     public static function findIdentityByAccessToken($token, $type = null): ?IdentityInterface
     {
@@ -190,6 +192,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates "remember me" authentication key
+     * @throws Exception
      */
     public function generateAuthKey(): void
     {
@@ -198,16 +201,18 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * Generates new password reset token
+     * @throws Exception
      */
-    public function generatePasswordResetToken()
+    public function generatePasswordResetToken(): void
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     /**
      * Generates new token for email verification
+     * @throws Exception
      */
-    public function generateEmailVerificationToken()
+    public function generateEmailVerificationToken(): void
     {
         $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
@@ -215,12 +220,12 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Removes password reset token
      */
-    public function removePasswordResetToken()
+    public function removePasswordResetToken(): void
     {
         $this->password_reset_token = null;
     }
 
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         if ($this->Role === self::ROLE_ADMIN) {
             return true;
